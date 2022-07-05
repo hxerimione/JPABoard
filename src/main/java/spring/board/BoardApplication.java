@@ -9,7 +9,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class BoardApplication {
-
+	@Bean
+	public BCryptPasswordEncoder encoder(){
+		return new BCryptPasswordEncoder();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}

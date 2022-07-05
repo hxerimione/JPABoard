@@ -18,7 +18,7 @@ import java.util.UUID;
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private UserRepository userRepository;
-    @Bean
+    @Autowired
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }

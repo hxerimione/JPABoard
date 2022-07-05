@@ -8,6 +8,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity @ToString
+@NoArgsConstructor
+@Table(name = "user")
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue

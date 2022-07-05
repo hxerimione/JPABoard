@@ -47,47 +47,6 @@ public class UserController {
         model.addAttribute("users",users);
         return "users/userList";
     }
-    @GetMapping("/user")
-    @ResponseBody
-    public String user(){
-        return "user";
-    }
 
-    @GetMapping("/manager")
-    @ResponseBody
-    public String manager(){
-        return "manager";
-    }
 
-    @GetMapping("/admin")
-    @ResponseBody
-    public String admin(){
-        return "admin";
-    }
-    @GetMapping("/oauth/loginInfo")
-    @ResponseBody
-    public String oauthLoginInfo(Authentication authentication, @AuthenticationPrincipal OAuth2User oAuth2UserPrincipal){
-        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
-        Map<String, Object> attributes = oAuth2User.getAttributes();
-        System.out.println(attributes);
-        // PrincipalOauth2UserService의 getAttributes내용과 같음
-
-        Map<String, Object> attributes1 = oAuth2UserPrincipal.getAttributes();
-        // attributes == attributes1
-
-        return attributes.toString();     //세션에 담긴 user가져올 수 있음음
-    }
-
-    @GetMapping("/loginInfo")
-    @ResponseBody
-    public String loginInfo(Authentication authentication, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-        String result = "";
-
-        PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
-        if (!(principal.getUser().getProvider() == null)) {
-            result = result + "OAuth2 로그인 : " + principal;
-        }
-            return result;
-
-    }
 }

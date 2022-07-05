@@ -15,6 +15,7 @@ import spring.board.service.PostService;
 import spring.board.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +25,11 @@ public class PostController {
     private final PostService postService;
     private final UserService userService;
     @GetMapping("/posts/new")
-    public String createPost(Model model){
-        List<User> findUsers = userService.findAll();
-        model.addAttribute("users",findUsers);
+    public String createPost(Model model, Principal principal){
+        User user = userService.findByUsername("kakao_"+principal.getName());
+        System.out.println("세션:"+user.getUsername());
+        model.addAttribute(user);
+
         model.addAttribute("post",new Post());
         return "posts/createPostForm";
     }

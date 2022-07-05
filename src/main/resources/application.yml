@@ -1,0 +1,36 @@
+spring: #띄어쓰기 없음
+  datasource: #띄어쓰기 2칸
+    url: jdbc:h2:tcp://localhost/~/board #4칸
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  jpa: #띄어쓰기 2칸
+    hibernate: #띄어쓰기 4칸
+      ddl-auto: create #띄어쓰기 6칸
+    properties: #띄어쓰기 4칸
+      hibernate: #띄어쓰기 6칸 #
+        show_sql: true   #띄어쓰기 8칸
+        format_sql: true  #띄어쓰기 8칸
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 94c7167a78398255333f63cec8dbce68
+            redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            client-authentication-method: POST
+            authorization-grant-type: authorization_code
+            scope: profile_nickname, profile_image, account_email
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization_uri: https://kauth.kakao.com/oauth/authorize
+            token_uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user_name_attribute: id
+logging.level: #띄어쓰기 없음
+  org.hibernate.SQL: debug #띄어쓰기 2칸 #
+  org.hibernate.type: trace #띄어쓰기 2칸

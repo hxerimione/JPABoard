@@ -16,6 +16,9 @@ build/
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+.css
+.js
+.yml
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -24,8 +27,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-!**/src/main/**/application.yml
-!**/src/main/**/static/
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

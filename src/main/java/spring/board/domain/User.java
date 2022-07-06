@@ -1,15 +1,17 @@
 package spring.board.domain;
 
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
-@Setter
-@Entity @ToString
+@Entity
+
 @NoArgsConstructor
 @Table(name = "user")
+
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue
@@ -33,7 +35,7 @@ public class User extends BaseTimeEntity {
     private String providerId;  // oauth2를 이용할 경우 아이디값
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private List<Post> posts = new ArrayList<>();
 
     public User update(String username, String picture){

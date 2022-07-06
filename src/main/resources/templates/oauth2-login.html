@@ -6,20 +6,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>로그인 (Please sign in)</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+    <link href="static/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
+
 <body>
+<title>로그인 (Please sign in)</title>
 <div class="container">
     <h2 class="form-signin-heading">로그인이 필요한 페이지입니다.</h2>
     <p>(Login with OAuth 2.0)</p>
     <p>외부 로그인 계정을 선택해주세요.</p>
-    <table class="table table-striped" th:each="url : ${urls}">
-        <tr>
-            <td><a href="#" th:href="${url.value}" th:text="${url.key}">Naver</a></td>
-        </tr>
-    </table>
+    <a href="/oauth2/authorization/kakao">카카오 로그인</a>
+    <!-- /oauth2/authorization/{registrationId}에 요청이 들어오면,
+    스프링 시큐리티가 provider의 authorization-uri로 요청을 전달한다-->
+    <br><br>
+
 </div>
 </body>
 </html>

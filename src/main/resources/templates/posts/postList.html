@@ -1,9 +1,22 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: header" />
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <p sec:authentication="principal"></p>
+    <div sec:authorize="isAnonymous()" style="background-color:yellow; padding:1em;">
+        <a href="/oauth2/authorization/kakao">카카오 로그인</a>
+        <!-- /oauth2/authorization/{registrationId}에 요청이 들어오면,
+        스프링 시큐리티가 provider의 authorization-uri로 요청을 전달한다-->
+        <a href="/posts/new">새 글</a>
+        <br><br>
+    </div>
+    <div sec:authorize="isAuthenticated()" style="background-color:yellow; padding:1em;">
+        <a href="/logout">로그아웃</a>
+        <a href="/posts/new">새 글</a>
+    </div>
+
     <div>
         <table class="table table-striped">
             <thead>

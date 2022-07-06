@@ -31,17 +31,25 @@ public class SecurityConfig {
 
         http
                 .csrf().disable().authorizeRequests()
-                .antMatchers("/", "/auth/**","/posts","/login")
-                .permitAll()
+                .antMatchers("/", "/auth/**","/posts","/login").permitAll()
+                .antMatchers("/posts/new").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/users/**").access("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
+          .and()
+                .logout()					// logout할 경우
+                .logoutUrl("/logout")			// 로그아웃을 처리할 URL 입력
+                .logoutSuccessUrl("/")		// 로그아웃 성공 시 "/"으로 이동
           .and()
             .oauth2Login()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/login")
+                .failureUrl("/")
+
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService); //사용자 정보 처리
+
+
 
         return http.build();
     }

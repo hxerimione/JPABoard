@@ -3,7 +3,10 @@ package spring.board.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring.board.domain.Post;
 import spring.board.domain.User;
+import spring.board.repository.PostRepository;
+import spring.board.repository.PostRepositoryClass;
 import spring.board.repository.UserRepository;
 
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
+    private final PostRepositoryClass postRepositoryClass;
     @Transactional
     public void join(User user){
         validateDuplicateMember(user);
@@ -41,5 +44,8 @@ public class UserService {
     }
     public List<User> findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+    public List<Post> findPosts(Long userId) {
+        return postRepositoryClass.findByUserId(userId);
     }
 }

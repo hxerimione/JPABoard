@@ -9,12 +9,14 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import spring.board.domain.Role;
 import spring.board.domain.User;
 import spring.board.repository.UserRepository;
 
 import java.util.UUID;
 @Service
+
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private UserRepository userRepository;
@@ -34,7 +36,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             oauth2UserInfo = new KakaoUserInfo(oAuth2User.getAttributes());
         }
         String providerId = oauth2UserInfo.getProviderId();
-        String username = provider+"_"+providerId;
+        String username = provider+"_"+providerId; //카카오_번호
 
         String uuid = UUID.randomUUID().toString().substring(0, 6);
         String password = encoder().encode("패스워드"+uuid);
@@ -50,6 +52,9 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .provider(provider).providerId(providerId)
                     .build();
             userRepository.save(byUsername);
+        }
+        else{
+            System.out.println("혹시 이거 ?");
         }
         return new PrincipalDetails(byUsername, oauth2UserInfo);
     }

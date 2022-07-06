@@ -35,18 +35,18 @@ public class PostController {
     }
     @PostMapping("/posts/new")
     public String create(@Valid PostForm form,
-                         @RequestParam("userId") Long id,
+                         Principal principal,
                          BindingResult result){
+        System.out.println("happy:");
         if(result.hasErrors()){
             System.out.println("sad");
             return "posts/createPostForm";
         }
-        System.out.println("formname"+id);
         Post post = new Post();
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
 
-        post.setUser(userService.findById(id).get());
+        post.setUser(userService.findByUsername("kakao_"+principal.getName()));
         //PostDto postDto = new PostDto(post);
         postService.savePost(post);
 

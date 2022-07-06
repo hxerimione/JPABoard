@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import spring.board.oauth.PrincipalDetails;
 import spring.board.service.UserService;
@@ -22,6 +23,10 @@ public class LoginController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String login_enter(){
+            return "login_enter";
+    }
     @GetMapping("/admin")
     public String admin(){
         return "admin";

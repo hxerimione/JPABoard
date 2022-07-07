@@ -1,16 +1,13 @@
 package spring.board.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import spring.board.domain.Post;
 import spring.board.domain.User;
-import spring.board.dto.PostDto;
 import spring.board.service.PostService;
 import spring.board.service.UserService;
 
@@ -37,9 +34,7 @@ public class PostController {
     public String create(@Valid PostForm form,
                          Principal principal,
                          BindingResult result){
-        System.out.println("happy:");
         if(result.hasErrors()){
-            System.out.println("sad");
             return "posts/createPostForm";
         }
         Post post = new Post();
@@ -64,9 +59,43 @@ public class PostController {
     public String read(@PathVariable Long id, Model model){
         Post post = postService.findById(id);
         String username = post.getUser().getUsername();
-        System.out.println("이름"+post.getUser().getUsername());
+        //System.out.println("이름"+post.getUser().getUsername());
         model.addAttribute("username",username);
         model.addAttribute(post);
         return "posts/postView";
     }
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model){
+        Post post = postService.findById(id);
+        String username = post.getUser().getUsername();
+        model.addAttribute("username",username);
+        model.addAttribute(post);
+        return "posts/postUpdate";
+
+    }
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable Long id,@Valid PostForm form,
+                Principal principal,
+                BindingResult result){
+            if(result.hasErrors()){
+                return "/update/{id}";
+            }
+            Post post =postService.findById(id);
+            post.setTitle(form.getTitle());
+            post.setContent(form.getContent());
+
+            //PostDto postDto = new PostDto(post);
+            postService.update(post);
+
+            return "redirect:/posts";
+    }
+    @DeleteMapping("/posts/{id}")
+    public String delete(@PathVariable Long id){
+        System.out.println("뭐가문제야");
+        postService.deleteById(id);
+
+        return "redirect:/";
+    }
+
 }
+

@@ -9,7 +9,11 @@
         <div th:text="${post.content}">content</div>
         <div th:text="${username}">author</div>
 
-
+    <a th:href="@{/update/{id}(id=${post.id})}">수정</a>
+    <form th:action="@{/posts/{id}(id=${post.id})}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button id="delete-btn">삭제</button>
+    </form>
 
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->

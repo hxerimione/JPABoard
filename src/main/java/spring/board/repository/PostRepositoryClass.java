@@ -10,9 +10,12 @@ import java.util.List;
 public class PostRepositoryClass {
     @PersistenceContext
     EntityManager em;
+
     public List<Post> findByUserId(Long userId){
         return em.createQuery("select p from Post p where p.user.id=:userId")
                 .setParameter("userId",userId)
                 .getResultList();
     }
+
+
 }

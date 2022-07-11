@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import spring.board.domain.Post;
 import spring.board.domain.Role;
 import spring.board.domain.User;
 import spring.board.oauth.PrincipalDetails;
@@ -46,6 +48,12 @@ public class UserController {
         List<User> users = userService.findAll();
         model.addAttribute("users",users);
         return "users/userList";
+    }
+    @GetMapping("/users/{id}")
+    public String list(@PathVariable Long id, Model model){
+        List<Post> posts = userService.findPosts(id);
+        model.addAttribute("posts",posts);
+        return "users/postList";
     }
 
 

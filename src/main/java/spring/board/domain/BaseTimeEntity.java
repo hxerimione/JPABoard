@@ -19,7 +19,7 @@ public abstract class BaseTimeEntity {
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @UpdateTimestamp
+    @LastModifiedDate
     private LocalDateTime modifiedDate;
 
 }

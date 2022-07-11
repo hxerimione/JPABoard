@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf().disable().authorizeRequests()
                 .antMatchers("/", "/auth/**","/posts","/login").permitAll()
                 .antMatchers("/posts/new").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/users/**").access("ROLE_ADMIN")
+                //.antMatchers("/users/**").access("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
           .and()

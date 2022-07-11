@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class PostController {
     @GetMapping("/posts/new")
     public String createPost(Model model, Principal principal){
         User user = userService.findByUsername("kakao_"+principal.getName());
-        System.out.println("세션:"+user.getUsername());
+        System.out.println("세션:"+principal.getName());
         model.addAttribute(user);
 
         model.addAttribute("post",new Post());
@@ -90,10 +91,10 @@ public class PostController {
             return "redirect:/posts";
     }
     @DeleteMapping("/posts/{id}")
-    public String delete(@PathVariable Long id){
-        System.out.println("뭐가문제야");
-        postService.deleteById(id);
+    public String delete(@PathVariable Long id,Principal principal){
 
+        System.out.println("뭐가문제야");
+        postService.deleteById(id,principal.getName());
         return "redirect:/";
     }
 

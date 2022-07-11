@@ -10,8 +10,7 @@ import java.util.List;
 @Entity
 
 @NoArgsConstructor
-@Table(name = "user")
-
+@Table
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue
@@ -35,7 +34,7 @@ public class User extends BaseTimeEntity {
     private String providerId;  // oauth2를 이용할 경우 아이디값
     private String password;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private List<Post> posts = new ArrayList<>();
 
     public User update(String username, String picture){

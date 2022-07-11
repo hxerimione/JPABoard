@@ -51,7 +51,7 @@ public class PostRepositoryTest {
         post.setContent("content1");
         postRepository.save(post);
         postRepository.deleteById(post.getId());
-        Assertions.assertEquals(0,postRepository.findAll().size());
+        Assertions.assertEquals(1,postRepository.findAll().size());
 
     }
 }

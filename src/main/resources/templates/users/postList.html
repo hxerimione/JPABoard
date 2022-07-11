@@ -14,10 +14,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.email}"></td>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.id}"></td>
+                <td><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">title</a></td>
+                <td th:text="${post.createdDate}"></td>
             </tr>
             </tbody>
         </table>

@@ -3,6 +3,7 @@ package spring.board.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -22,7 +23,8 @@ public class Post extends BaseTimeEntity{
     private String content;
 
     //영속성 전이를 해줘야 쿼리문에서 검색이 된다. XXXTOONE 은 무조건 지연로딩 설정 해줘야한다.
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private User user;
 
 

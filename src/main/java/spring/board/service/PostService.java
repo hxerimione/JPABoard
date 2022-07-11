@@ -8,7 +8,9 @@ import spring.board.domain.User;
 import spring.board.repository.PostRepository;
 import spring.board.repository.PostRepositoryClass;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -45,8 +47,17 @@ public class PostService {
 //    public void savePostDto(PostDto postDto){
 //        postRepository.save(postDto);
 //    }
+
     @Transactional
-    public void deleteById(Long postId){
-        postRepository.deleteById(postId);
+    public void deleteById(Long postId, String principalName) {
+        Optional<Post> post = postRepository.findById(postId);
+        if (principalName.equals(post.get().getUser().getProviderId())){
+            System.out.println("행복한 연휴되세요");
+            postRepository.deleteById(postId);
+        }else{
+            System.out.println("principalName"+principalName);
+            System.out.println("user"+post.get().getUser().getProviderId());
+            System.out.println("회원님의 글이 아니므로 삭제할 수 없습니다.");
+        }
     }
 }

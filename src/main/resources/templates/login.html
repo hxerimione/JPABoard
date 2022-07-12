@@ -6,7 +6,7 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <h2>로그인 유저 : </h2>
     <p sec:authentication="principal"></p>
-    <div sec:authorize="isAnonymous()" style="background-color:yellow; padding:1em;">
+    <div sec:authorize="isAnonymous()" style="padding:1em;">
         <a href="/oauth2/authorization/kakao">카카오 로그인</a>
         <!-- /oauth2/authorization/{registrationId}에 요청이 들어오면,
         스프링 시큐리티가 provider의 authorization-uri로 요청을 전달한다-->

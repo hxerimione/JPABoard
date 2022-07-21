@@ -1,14 +1,11 @@
 package spring.board.domain;
 
 import lombok.*;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Entity
-
 @NoArgsConstructor
 @Table
 public class User extends BaseTimeEntity {

@@ -2,7 +2,6 @@ package spring.board.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import spring.board.domain.User;
 
 import javax.validation.constraints.NotEmpty;
 

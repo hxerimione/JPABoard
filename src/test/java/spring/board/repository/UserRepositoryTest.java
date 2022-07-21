@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.board.domain.Role;
 import spring.board.domain.User;
 
-import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class UserRepositoryTest {

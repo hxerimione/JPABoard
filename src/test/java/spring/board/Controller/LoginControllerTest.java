@@ -8,16 +8,17 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class IndexControllerTest {
+class LoginControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
-
     @Test
-    public void 메인페이지로딩() {
+    void 로그인페이지로딩() {
         //when
-        String body = restTemplate.getForObject("/", String.class);
+        String body = restTemplate.getForObject("/login", String.class);
 
         //then
-        assertThat(body).contains("HOME");
+        assertThat(body).contains("로그인페이지");
     }
+
+
 }

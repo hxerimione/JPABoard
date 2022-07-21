@@ -1,19 +1,20 @@
 package spring.board.repository;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import spring.board.domain.Post;
+
 import java.util.List;
 import java.util.Optional;
 
 
 @Repository
 public interface PostRepository extends JpaRepository<Post,Long> {
+
+
 
     @Modifying
     @Query("update Post p set p.title = :title, p.content = :content where p.id = :id")
@@ -51,6 +52,7 @@ public interface PostRepository extends JpaRepository<Post,Long> {
 
     @Override
     <S extends Post> S save(S entity);
+
 
     @Override
     void deleteById(Long postId);

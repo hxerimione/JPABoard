@@ -4,6 +4,7 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <p>로그인페이지</p>
     <h2>로그인 유저 : </h2>
     <p sec:authentication="principal"></p>
     <div sec:authorize="isAnonymous()" style="padding:1em;">

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 @Getter
-@ToString
-
 public class PrincipalDetails implements OAuth2User {
 
     private User user;

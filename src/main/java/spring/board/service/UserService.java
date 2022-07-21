@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.board.domain.Post;
 import spring.board.domain.User;
-import spring.board.repository.PostRepository;
 import spring.board.repository.PostRepositoryClass;
 import spring.board.repository.UserRepository;
 
